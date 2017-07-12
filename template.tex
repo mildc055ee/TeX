@@ -1,0 +1,80 @@
+\documentclass[a4paper,dvipdfmx]{jsarticle}
+
+\usepackage{amsmath}
+% 以下2つはダウンロードの必要なパッケージ
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+
+\fancypagestyle{foot}
+{
+\fancyhead{}
+\fancyfoot{}
+\renewcommand\headrulewidth{0pt}
+\fancyfoot[R]{ p.\thepage/\pageref{LastPage}}
+}
+
+\makeatletter
+\newcommand{\figcaption}[1]{\def\@captype{figure}\caption{#1}}
+\newcommand{\tblcaption}[1]{\def\@captype{table}\caption{#1}}
+
+% 5.3.10のようにsubsubsectionまで対応させる場合は
+% \arabic{section}.\arabic{subsection}.\arabic{equation}
+% のように\arabic{section}. の後に\arabic{subsection}. を追加
+\def\thefigure{\thesection.\arabic{figure}}
+\@addtoreset{figure}{section}
+\renewcommand{\theequation}{\arabic{section}.\arabic{equation}}
+\renewcommand{\thetable}{\arabic{section}.\arabic{table}}
+\@addtoreset{equation}{section}
+\@addtoreset{table}{section}
+
+% 表１.1、図1.2、図1.3、表1.4…のように図と表をまとめて通し番号をつけたいときは
+% 以下のコマンドも追加 
+% 表1.1,図1.1、図1.2、表1.2…のように図と表を別で通し番号をつけるときは無視
+% \let\c@figure\c@table
+% \let\p@figure\p@table
+% \let\cl@figure\cl@table
+% \let\thefigure\thetable
+
+\makeatother
+
+\begin{document}
+\pagestyle{foot}
+
+\section{title1}
+
+
+\section{title2}
+	\subsection{subtitle2.1}
+
+
+	\subsection{subtitle2.2}
+
+
+\section{title3}
+	\subsection{subtitle3.1}
+		\subsubsection{subsubtitle3.1.1}
+
+
+	\subsection{subtitle3.2}
+		\subsubsection{subsubtitle3.2.1}
+
+
+		\subsubsection{subsubtitle3.2.2}
+
+% 途中別途添付のグラフなどを挿入するなどでページ番号を飛ばすときは以下のコマンドを使用
+% n=飛ばすページの総数(このテンプレでは3)
+% このコマンドを使用する場合,2回コンパイルするとページ番号が正しい表記になる
+\newpage
+\pagestyle{foot}
+\addtocounter{page}{3}
+
+\section{newpagetitle4}
+	\subsection{title4.1}
+
+% 章番号をリセットするときは次のコマンドを使用
+% \setcounter{リセットしたい部分}{リセットする番号-１}
+\setcounter{section}{0}
+	\section{resettitle1}
+
+
+\end{document}

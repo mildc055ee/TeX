@@ -1,0 +1,17 @@
+\documentclass{article}
+
+\usepackage{multirow}
+
+\begin{document}
+
+\begin{table}[htbp]
+\centering
+\caption{サンプル表}
+\begin{tabular}{c|c|c|c|cc} \hline \hline
+セル1 &	\multicolumn{2}{c|}{セル2} & \multirow{2}{*}{セル3} & \multicolumn{2}{c}{\multirow{2}{*}{セル4}} \\ \cline{1-3}
+セル5 & \multirow{2}{*}{セル6}     &    セル7    &          &                            &               \\ \cline{1-1} \cline{3-6}
+セル8 &                            &    セル10   &  セル11  &\multicolumn{1}{c|}{セル12} &セル13         \\ \hline
+\end{tabular}
+\end{table}
+
+\end{document}

@@ -1,0 +1,61 @@
+\documentclass[dvipdfmx]{jsarticle}
+
+\usepackage{tikz}
+
+\begin{document}
+
+\tikzset{
+        hollow node/.style={circle,draw,inner sep=1.0}
+}
+\tikzset{
+	level 1/.style = {hollow node, level distance=1.5cm, sibling distance=1.75cm}
+}
+\tikzset{
+	level 2/.style = {hollow node, level distance=1.5cm, sibling distance=1.5cm}
+}
+\tikzset{
+	level 3/.style = {hollow node, level distance=1.5cm,sibling distance=1cm}
+}
+\tikzset{
+	end/.style = {hollow node}
+}
+
+\begin{tikzpicture}[grow=left]
+\node[level 1] {}
+	child{
+		node[level 2] {}
+		child{
+			node[level 3]{}
+				child {
+					node[end, label=left:{$AA:\frac{1}{25}$}] {}
+					edge from parent node [auto,swap]{1}
+				}
+				child {
+					node[end, label=left:{$AB:\frac{4}{25}$}] {}
+					edge from parent node[auto]{0}
+				}
+				edge from parent node[auto,swap]{1}
+		}
+		child{
+				node[level 3]{}
+				child{
+					node[end,label=left:{$BA:\frac{4}{25}$}]{}
+				}
+				edge from parent node[auto]{0}
+		}
+		edge from parent node[auto,swap]{1}
+	}
+	child {
+		node[level 2] {}
+		child {
+			node[level 3]{}
+			child{
+				node[end, label=left:{$BB:\frac{16}{25}$}] {}
+			}
+		}
+		edge from parent node[auto]{0}
+	};
+\end{tikzpicture}
+
+\end{document}
+
